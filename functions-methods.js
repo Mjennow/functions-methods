@@ -10,15 +10,40 @@
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
 
+function getEmailDomain (emailDomain) {
+    const indexAt = emailDomain.indexOf("@") + 1;
+    return  emailDomain.substring(indexAt);
+
+}
+
+const newEmailDomain = getEmailDomain("a.wiersma@outlook.com");
+console.log(newEmailDomain);
 
 
 /* Opdracht  2 */
-// Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
+// Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker),
+// een novi-education domein (student), of extern domein (zoals gmail of outlook)
 // ---- Verwachte uitkomsten:
 // typeOfEmail("n.eeken@novi-education.nl") geeft "Student"
 // typeOfEmail("t.mellink@novi.nl") geeft geeft "Medewerker"
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
+
+function typeOfEmail (mailAdress) {
+    if (mailAdress.includes ("novi-education.nl")){
+     return "Student";
+    }
+    else if  (mailAdress.includes ("novi.nl")) {
+        return "Medewerker";
+    }
+    else  {
+        return "Extern";
+    }
+
+}
+
+const emailEmployer = typeOfEmail("t.mellink@novi.nl");
+console.log(emailEmployer);
 
 
 
@@ -34,3 +59,19 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity (emailAdress) {
+    if (emailAdress.includes("@") && !emailAdress.includes(",") && emailAdress.lastIndexOf(".") !== emailAdress.length -1)  {
+        return true
+    } else if (emailAdress.includes(",")) {
+        return false
+    } else if (emailAdress.lastIndexOf(".") === emailAdress.length -1) {
+        return false
+    }
+     else {
+         return false
+    }
+}
+
+const emailAdressValidity = checkEmailValidity("n.eeken@novi.nl");
+console.log(emailAdressValidity);
